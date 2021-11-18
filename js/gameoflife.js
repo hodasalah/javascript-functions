@@ -1,11 +1,11 @@
 function seed() {
 	return Array.prototype.slice.call(arguments);
 }
-console.log(seed(2, 3, 4));
+//console.log(seed(2, 3, 4));
 function same([x, y], [j, k]) {
 	return x === j && y === k;
 }
-console.log(same([2, 4], [2, 4]));
+//console.log(same([2, 4], [2, 4]));
 
 // The game state to search for `cell` is passed as the `this` value of the function.
 function contains(cell) {
@@ -28,13 +28,13 @@ const corners = (state = []) => {
 		};
 	}
 };
-console.log(
-	corners([
-		[4, 5],
-		[3, 4],
-		[2, 3],
-	])
-);
+// console.log(
+// 	corners([
+// 		[4, 5],
+// 		[3, 4],
+// 		[2, 3],
+// 	])
+// );
 
 const printCells = (state) => {
 	let topRight = corners(state).topRight;
@@ -51,15 +51,15 @@ const printCells = (state) => {
 	}
 	return result;
 };
-console.log(
-	printCells([
-		[3, 2],
-		[2, 3],
-		[3, 3],
-		[3, 4],
-		[4, 4],
-	])
-);
+// console.log(
+// 	printCells([
+// 		[3, 2],
+// 		[2, 3],
+// 		[3, 3],
+// 		[3, 4],
+// 		[4, 4],
+// 	])
+// );
 
 const getNeighborsOf = ([x, y]) => {
 	return [
@@ -74,7 +74,7 @@ const getNeighborsOf = ([x, y]) => {
 		[x + 1, y - 1],
 	];
 };
-console.log(getNeighborsOf([4, 2]));
+//console.log(getNeighborsOf([4, 2]));
 const getLivingNeighbors = (cell, state) => {
 	return getNeighborsOf(cell).filter((c) => contains.bind(state)(c));
 };
@@ -100,18 +100,17 @@ const calculateNext = (state) => {
 };
 
 const iterate = (state, iterations) => {
-  const states = [state];
-  for(let i = 0; i < iterations; i++) {
-      states.push(calculateNext(states[states.length-1]));
-  }
-  return states;
+	const states = [state];
+	for (let i = 0; i < iterations; i++) {
+		states.push(calculateNext(states[states.length - 1]));
+	}
+	return states;
 };
 
 const main = (pattern, iterations) => {
-const results = iterate(startPatterns[pattern], iterations);
-results.forEach(r => console.log(printCells(r)));
+	const results = iterate(startPatterns[pattern], iterations);
+	results.forEach((r) => console.log(printCells(r)));
 };
-
 
 const startPatterns = {
 	rpentomino: [
